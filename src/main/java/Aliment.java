@@ -46,7 +46,10 @@ public class Aliment {
                 System.out.println("\n \n === CONGRATULATIONS AMIGO ===\n the aliment " + rs.getString("name") + " has been correctly created \n \n \n");
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         String sqlcmd2 = "INSERT INTO energy (id_aliment,calories,protein) VALUES (?,?,?);";
 
         try (PreparedStatement insertStatement = connection.prepareStatement(sqlcmd2, RETURN_GENERATED_KEYS)) {
@@ -54,8 +57,11 @@ public class Aliment {
             insertStatement.setInt(2, getCalorie());
             insertStatement.setDouble(3, getProtein());
             insertStatement.execute();
-        }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
     }
 
 
